@@ -3,7 +3,7 @@ import { ApiDataContext } from '../context/ApiData'
 
 const Input = () => {
     const [inputData, setInputData] = useState("")
-    const { apiData, setAPIData } = useContext(ApiDataContext)
+    const { apiData, setAPIData,spamWords, setSpamWords } = useContext(ApiDataContext)
     const [backendLoading, setBackendLoading] = useState(false)
 
     const searchInput = async () => {
@@ -29,7 +29,10 @@ const Input = () => {
             }
             const data = await res.json()
             console.log(data.message)
+            console.log(data.spamWords)
+            
             setAPIData(data.message)
+            setSpamWords(data.spamWords)
         } catch (error) {
             console.log(error)
         } finally {

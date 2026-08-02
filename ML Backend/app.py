@@ -21,6 +21,22 @@ with open("bin/vectorizer.pkl","rb") as f:
 with open("bin/model.pkl","rb") as f:
     model = pickle.load(f)
 
+
+def getSpamCommon(message):
+    feature_names = vectorizer.get_feature_names_out()
+    importance = model.feature_log_prob_[1] - model.feature_log_prob_[0]
+    spam_scores = dict(zip(feature_names, importance))
+
+    message = re.findall(r"\b\w+\b", message.lower())
+    message = " ".join(message)
+
+    detected = set()
+    for word in message.lower().split():
+        if word in spam_scores and spam_scores[word] > 1:
+            detected.add(word)
+
+    return " ".join(list(detected))
+
 @app.route("/predict",methods=["POST"])
 def predictSpam():
     reqData = request.get_json()
@@ -48,8 +64,12 @@ def predictSpam():
 
     pred = model.predict(searchFinal)
     predVal = pred.item()
+    spamWords = ""
+    if predVal==1:
+        spamWords = getSpamCommon(message)
 
     return jsonify({
         "status":"success",
-        "message": predVal
+        "message": predVal,
+        "spamWords":spamWords
     })
