@@ -103,12 +103,30 @@
   --text-label-sm: 12px;
   --text-label-sm--line-height: 1;
 }
-
+/* 
 @layer base {
   body {
     @apply bg-background text-on-background font-body-md min-h-screen flex flex-col;
   }
 }
+ */
+@layer base {
+  html, body, #root {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  html::-webkit-scrollbar, 
+  body::-webkit-scrollbar, 
+  #root::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    @apply bg-background text-on-background font-body-md min-h-screen flex flex-col;
+  }
+}
+
 
 @layer utilities {
   .scrollbar-hide::-webkit-scrollbar {
@@ -119,3 +137,4 @@
     scrollbar-width: none;
   }
 }
+ 

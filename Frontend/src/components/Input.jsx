@@ -3,18 +3,19 @@ import { ApiDataContext } from '../context/ApiData'
 
 const Input = () => {
     const [inputData, setInputData] = useState("")
-    const {analysis,setAnalysis} = useContext(ApiDataContext)
+    const { analysis, setAnalysis } = useContext(ApiDataContext)
     const [backendLoading, setBackendLoading] = useState(false)
 
     const searchInput = async () => {
-        console.log(inputData)
-        setBackendLoading(true)
-        if (!inputData) {
+        if (!inputData.trim()) {
             return
         }
 
+        setBackendLoading(true)
+
+
         try {
-            const res = await fetch("http://127.0.0.1:5000/predict", {
+            const res = await fetch("/predict", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -30,8 +31,8 @@ const Input = () => {
             const data = await res.json()
             console.log(data.prediction)
             console.log(data.spamWords)
-            
-            
+
+
             setAnalysis(data)
         } catch (error) {
             console.log(error)
@@ -45,7 +46,7 @@ const Input = () => {
             <textarea
                 className="w-full h-64 bg-transparent text-on-surface font-body-md border-none resize-none focus:ring-0 focus:outline-none scrollbar-hide"
                 placeholder="Paste the suspicious message here..." onChange={(e) => { setInputData(e.target.value) }}></textarea>
-            <div className="absolute bottom-stack-md right-stack-md flex justify-end text-black">
+            <div className="absolute bottom-stack-md right-stack-md flex justify-end text-black select-none">
                 {!backendLoading ? <button
                     className="bg-primary-container font-label-sm text-label-sm px-6 py-3 rounded-lg hover:bg-yellow-700 transition-colors flex items-center gap-2 font-bold cursor-pointer" onClick={() => { searchInput() }}>
                     <span className="material-symbols-outlined text-[18px]">analytics</span>

@@ -3,8 +3,7 @@ import { ApiDataContext } from '../context/ApiData'
 
 const Analysis = () => {
     const analysisRef = useRef(null)
-    const { analysis, setAnalysis } = useContext(ApiDataContext)
-    const [spamWordsHere, setSpamWordsHere] = useState("hello this are the spam words")
+    const { analysis } = useContext(ApiDataContext)
 
     useEffect(() => {
         if (analysis) {
@@ -66,7 +65,7 @@ const Analysis = () => {
                                 : "NOT SPAM"}
                     </h3>
                     <div className="space-y-stack-lg">
-                        {(analysis?.spamProbability > 50 && (analysis?.spamWords?.trim() || analysis?.contentAnalysis?.currency > 0 || analysis?.contentAnalysis?.digits > 0 || analysis?.spamProbability >= 60)) && <div>
+                        {(analysis?.spamProbability >= 50 && (analysis?.spamWords?.trim() || analysis?.contentAnalysis?.currency > 0 || analysis?.contentAnalysis?.digits > 0 || analysis?.spamProbability >= 60)) && <div>
                             <h4
                                 className="font-bold text-on-surface text-sm mb-stack-sm uppercase tracking-wider opacity-70">
                                 Reasons</h4>
@@ -155,12 +154,12 @@ const Analysis = () => {
                             </div>
                         </div>
 
-                        {analysis?.spamWords ? <div>
+                        {analysis?.spamWords?.trim() ? <div>
                             <h4
                                 className="font-bold text-on-surface text-sm mb-stack-sm uppercase tracking-wider opacity-70">
                                 Detected Keywords</h4>
                             <div className="flex flex-wrap gap-2">
-                                {analysis?.spamWords.split(" ").map((word, index) => (
+                                {analysis?.spamWords?.trim().split(" ").map((word, index) => (
                                     <span key={index} className="px-3 py-1 bg-error/10 border border-error/20 text-error text-label-sm rounded-full font-bold">{word.toUpperCase()}</span>
 
                                 ))}

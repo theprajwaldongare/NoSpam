@@ -2,9 +2,9 @@ import React from 'react'
 
 const Features = () => {
     return (
-        <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-gutter mt-stack-lg">
+        <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-gutter mt-stack-lg select-none">
             <div
-                className="bg-surface-container border border-surface-variant rounded-xl p-stack-md flex flex-col items-center text-center group hover:bg-surface-bright transition-colors">
+                className="bg-surface-container border border-surface-variant rounded-xl p-stack-md flex flex-col items-center text-center group transition-colors">
                 <div
                     className="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mb-stack-md group-hover:bg-primary-container/20 transition-colors">
                     <span className="material-symbols-outlined text-primary">memory</span>
@@ -13,7 +13,7 @@ const Features = () => {
                 <p className="text-sm text-on-surface-variant">Analyzes text patterns to identify spam messages.</p>
             </div>
             <div
-                className="bg-surface-container border border-surface-variant rounded-xl p-stack-md flex flex-col items-center text-center group hover:bg-surface-bright transition-colors">
+                className="bg-surface-container border border-surface-variant rounded-xl p-stack-md flex flex-col items-center text-center group transition-colors">
                 <div
                     className="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mb-stack-md group-hover:bg-primary-container/20 transition-colors">
                     <span className="material-symbols-outlined text-primary">bolt</span>
@@ -23,7 +23,7 @@ const Features = () => {
                     results in milliseconds.</p>
             </div>
             <div
-                className="bg-surface-container border border-surface-variant rounded-xl p-stack-md flex flex-col items-center text-center group hover:bg-surface-bright transition-colors">
+                className="bg-surface-container border border-surface-variant rounded-xl p-stack-md flex flex-col items-center text-center group transition-colors">
                 <div
                     className="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mb-stack-md group-hover:bg-primary-container/20 transition-colors">
                     <span className="material-symbols-outlined text-primary">lock</span>
