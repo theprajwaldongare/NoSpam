@@ -5,7 +5,7 @@ import Hero from './components/Hero'
 import Input from './components/Input'
 import { ApiDataProvider } from './context/ApiData'
 import Analysis from './components/Analysis'
-
+import Features from './components/Features'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +19,7 @@ function App() {
           <Input />
           <Analysis/>
         </ApiDataProvider>
+        <Features/>
 
       </main>
     </>
