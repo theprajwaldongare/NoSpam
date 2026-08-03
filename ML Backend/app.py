@@ -1,16 +1,31 @@
 import os
 import re
 import pickle
-import requests
 import numpy as np
 import pandas as pd
 from flask_cors import CORS
 from scipy.sparse import hstack
 from flask import Flask,url_for,redirect,request,render_template,jsonify,send_from_directory
 
-app = Flask(__name__)
+# app = Flask(__name__)
+app = Flask(__name__, 
+            static_folder='dist/assets', 
+            template_folder='dist')
 
 CORS(app)
+
+@app.route('/<path:filename>')
+def serve_root_files(filename):
+    if os.path.exists(os.path.join('dist', filename)):
+        return send_from_directory('dist', filename)
+    
+    return render_template("index.html")
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return render_template("index.html")
 
 with open("bin/scaler.pkl","rb") as f:
     scaler = pickle.load(f)
