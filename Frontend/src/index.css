@@ -51,6 +51,15 @@
   --color-on-tertiary-container: #474340;
   --color-on-primary-container: #613b00;
 
+  --color-green: #81c995;
+  --color-on-green: #00391b;
+  --color-green-container: #00522a;
+  --color-on-green-container: #9df6b0;
+  --color-green-fixed: #9df6b0;
+  --color-on-green-fixed: #00210e;
+  --color-green-fixed-dim: #81c995;
+  --color-on-green-fixed-variant: #00391b;
+
   --spacing-container-max: 1280px;
   --spacing-stack-sm: 8px;
   --spacing-gutter: 24px;
@@ -101,10 +110,12 @@
   }
 }
 
-/* @import "tailwindcss";
-
-@layer base {
-  body {
-    @apply bg-[#151314] text-white
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
-} */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

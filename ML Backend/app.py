@@ -64,12 +64,28 @@ def predictSpam():
 
     pred = model.predict(searchFinal)
     predVal = pred.item()
+    proba = model.predict_proba(searchFinal)[0]
+
+    # hamProb = float(proba[0])
+    spamProb = float(proba[1])
+    spamProb = round(spamProb * 100, 2)
+    # hamProb = round(hamProb * 100, 2)
+
     spamWords = ""
     if predVal==1:
         spamWords = getSpamCommon(message)
 
     return jsonify({
         "status":"success",
-        "message": predVal,
-        "spamWords":spamWords
+        "prediction": predVal,
+        "spamProbability": spamProb,
+        "spamWords":spamWords,
+        "contentAnalysis": {
+        "characters": charCount,
+        "words": wordCount,
+        "digits": digitCount,
+        "urls": urlCount,
+        "currency": currencyCount,
+        "exclamation": exclamationCount
+    }
     })

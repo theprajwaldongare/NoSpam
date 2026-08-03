@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Input from './components/Input'
 import { ApiDataProvider } from './context/ApiData'
+import Analysis from './components/Analysis'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Hero />
         <ApiDataProvider>
           <Input />
+          <Analysis/>
         </ApiDataProvider>
 
       </main>

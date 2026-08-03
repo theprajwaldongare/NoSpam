@@ -3,10 +3,10 @@ import React,{createContext,useState} from "react"
 export const ApiDataContext = createContext()
 
 export const ApiDataProvider = ({children}) => {
-    const [apiData, setAPIData] = useState("")
-    const [spamWords, setSpamWords] = useState("")
+    const [analysis, setAnalysis] = useState(null)
+
     return (
-        <ApiDataContext.Provider value={{apiData, setAPIData,spamWords, setSpamWords}}>
+        <ApiDataContext.Provider value={{analysis,setAnalysis}}>
             {children}
         </ApiDataContext.Provider>
     )
